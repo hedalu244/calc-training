@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>計算練習</title>
+  <style>
+    html {
+      font-size: min(2vw, 10px);
+      color: #777;
+      font-family: 'Roboto Mono', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      font-size: 5rem;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper {
+      width: 50rem;
+      height: 100%;
+      margin: auto;
+    }
+
+    #maru,
+    #peke {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      display: none;
+      transform: translate(-50%, -50%);
+    }
+
+    #maru {
+      width: 40rem;
+      height: 40rem;
+      border-radius: 50%;
+      border: 4rem solid #6e5;
+    }
+    #peke {
+      width: 40rem;
+      height: 40rem;
+    }
+    #peke::before {
+      transform: rotate(45deg);
+      content: "";
+      position: absolute;
+      width: 40rem;
+      height: 0;
+      top: 18rem;
+      border-top: 4rem solid #e65;
+    }
+    #peke::after {
+      transform: rotate(45deg);
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 40rem;
+      left: 18rem;
+      border-left: 4rem solid #e65;
+    }
+
+    #question {
+      font-size: 10rem;
+    }
+
+    input {
+      font-size: 5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <span>計算練習</span>
+    <div id="maru"></div>
+    <div id="peke"></div>
+    <div id="question"></div>
+    <input type="text" id="answer">
+    <input type="button" id="run" value="解答" onclick="check()">
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
