@@ -11,16 +11,27 @@ let correct: number;
 
 function generate() {
     const operand = Math.floor(Math.random() * 4);
-    
-    const min = 1;
-    const max = operand < 2 ? 1000 : 100;
 
-    const x = Math.floor(Math.random() * (max - min)) + min;
-    const y = Math.floor(Math.random() * (max - min)) + min;
-
-    const a = Math.max(x, y);
-    const b = Math.min(x, y);
-
+    let a, b;
+    switch (operand) {
+        default:
+        case 0: { // + 
+            a = Math.floor(Math.random() * 999 + 1);
+            b = Math.floor(Math.random() * 999 + 1);
+        } break;
+        case 1: { // - 
+            b = Math.floor(Math.random() * 999 + 1);
+            a = Math.floor(b + Math.random() * 999 + 1);
+        } break;
+        case 2: { // *
+            b = Math.floor(Math.random() * 99 + 1);
+            a = Math.floor(Math.random() * 99 + 1);
+        } break;
+        case 3: { // /
+            b = Math.floor(Math.random() * 99 + 1);
+            a = Math.floor(b * (Math.random() * 99 + 1));
+        } break;
+    }
     correct = [a + b, a - b, a * b, a / b][operand];
     question.innerText = (a + ["＋", "－", "×", "÷"][operand] + b);
 }
@@ -28,10 +39,10 @@ function generate() {
 function check() {
     const diff = Math.abs(correct - parseFloat(answer.value));
     if (diff < 0.005) {
-        maru.style.display= "block";
+        maru.style.display = "block";
         navigator.vibrate([100]);
-        
-        setTimeout(()=>{
+
+        setTimeout(() => {
             answer.value = "";
             maru.style.display = "none";
             generate();
@@ -39,10 +50,10 @@ function check() {
     }
 
     else {
-        peke.style.display= "block";
+        peke.style.display = "block";
         navigator.vibrate([500]);
 
-        setTimeout(()=>{
+        setTimeout(() => {
             answer.value = "";
             peke.style.display = "none";
         }, 800);
